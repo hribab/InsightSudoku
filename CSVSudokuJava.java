@@ -27,7 +27,7 @@ public class Sudoku {
         }
  
      // Checking if  'val' is in 3x3 box.
-          int boxRow = x - x % 3;
+        int boxRow = x - x % 3;
         int boxColumn = y - y % 3;
  
         for (int i = 0; i < 3; i++) {
@@ -43,7 +43,7 @@ public class Sudoku {
     }
  
 	
-	 public static boolean sudokuBacktrack() {
+        public static boolean sudokuBacktrack() {
 	        int i = 0, j = 0;
 	        boolean isThereEmptyCell = false;
 	 
@@ -57,7 +57,7 @@ public class Sudoku {
 	            }
 	        }
 	 
-	        // We've done here.
+	        // If there are not empty cells we are done with the puzzle
 	        if (!isThereEmptyCell) {
 	            return true;
 	        }
@@ -88,18 +88,18 @@ public class Sudoku {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
+		// Get input from CSV file
 		String input="input.csv";
 		BufferedReader br = new BufferedReader(new FileReader(input));
 		String lines="";
 		int i=0,j=0;
 		while((lines=br.readLine()) !=null){
 			
-		String[] value=lines.split(",");
+		String[] value=lines.split(","); 
 		
 		for(int k=0;k<value.length;k++){
 			puzzle[i][j++]=Integer.parseInt(value[k]);//read values into puzzle array( two dimensional array )
-			if(j==9 && i<9){i++;j=0;}
+			if(j==9 && i<9)  { i++;  j=0; }
 			if(i==9) break;
 					
 			}
@@ -108,23 +108,19 @@ public class Sudoku {
 		
 		solveThePuzzle();
 		
-			
-			String output="output.csv";
-			@SuppressWarnings("resource")
-			BufferedWriter bw = new BufferedWriter(new FileWriter(output));
-			
-			for (int l = 0; l < n; l++) {
+		//Write the solution to CSV file	
+		String output="output.csv";
+		@SuppressWarnings("resource")
+		BufferedWriter bw = new BufferedWriter(new FileWriter(output));
+		for (int l = 0; l < n; l++) {
 	            for (int m = 0; m < n; m++) {
 	                bw.write(Integer.toString(puzzle[l][m]));
 	                bw.append(",");
 	    	            }
 	            bw.append("\n");
-	            
-	        }
-				bw.flush();
-	        	bw.close();
+	         }
+		    bw.flush();
+	            bw.close();
 		}
 	
-	
-
 }
