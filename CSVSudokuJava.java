@@ -9,7 +9,6 @@ public class Sudoku {
 
 	static int[][] puzzle=new int[9][9];
 	static int n=9;
-        //edit test
     
 	public static boolean putXinPosition(int x, int y, int val) {
 
